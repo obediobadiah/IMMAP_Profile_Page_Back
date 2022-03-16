@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\ProfileController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::get('/add-profile-identity', [ProfileController::class, 'SaveIdentity'])->name('add-profile-identity');
+Route::post('/add-profile-experience', [ProfileController::class, 'SaveExperienceEndDate']);
+Route::post('/add-profile-identity', [ProfileController::class, 'SaveIdentity']);
+
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
