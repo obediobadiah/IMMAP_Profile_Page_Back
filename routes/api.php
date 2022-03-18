@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/add-profile-identity', [ProfileController::class, 'SaveIdentity'])->name('add-profile-identity');
+Route::get('/profile-identity', [ProfileController::class, 'GetIdentity']);
+Route::get('/profile-experience', [ProfileController::class, 'GetExperience']);
+
 Route::post('/add-profile-experience', [ProfileController::class, 'SaveExperienceEndDate']);
 Route::post('/add-profile-identity', [ProfileController::class, 'SaveIdentity']);
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\profile_page;
+
 use App\Models\profile_identity;
 use App\Models\profile_experience;
 use App\Http\Controllers\Controller;
@@ -16,41 +16,6 @@ use Intervention\Image\Facades\Image as FacadesImage;;
 class ProfileController extends Controller
 {
 
-
-    // public function SaveProfile(Request $request){
-    //     $profile = new profile_page;
-    //     $profile ->name = $request -> input ('name');
-    //     $profile ->age = $request -> input ('age');
-    //     $profile ->job = $request -> input ('job');
-    //     $profile ->startdate = $request -> input ('startdate');
-    //     $profile ->enddate = $request -> input ('enddate');
-    //     $profile ->companyname = $request -> input ('companyname');
-
-    //     if($request->hasfile('companylogo')){
-    //         $file = $request -> file('companylogo');
-    //         $extention = $file->getClientOriginalExtension();
-    //         $filename = time().'.'.$extention;
-    //         $file->move('profile_images/CompanyLogo/',$filename);
-    //         $profile->companylogo = $filename;
-    //     }
-
-    //     $profile ->jobdescript = $request -> input ('jobdescript');
-
-    //     if($request->hasFile('image')){
-    //         $file = $request -> file('image');
-    //         $extention = $file->getClientOriginalExtension();
-    //         $filename = time().'.'.$extention;
-    //         $file->move('profile_images/profile/',$filename);
-    //         $profile->image = $filename;
-    //     }
-
-    //     $profile ->save();
-
-    //     return response() -> json([
-    //         'status'=> 200,
-    //         'message'=>'Student added successfully'
-    //     ]);
-    // }
 
     public function SaveIdentity(Request $request)
     {
@@ -101,5 +66,21 @@ class ProfileController extends Controller
             'message' => 'Experience added successfully'
         ]);
     }
+
+
+    
+    public function GetIdentity()
+    {
+        $profile_identity = profile_identity::latest('created_at')->first();
+        return response()->json($profile_identity);
+    }
+
+    public function GetExperience()
+    {
+        $search_text = request()->query('profile_name');
+        $profile_experience = profile_experience::where('name','LIKE','%'.$search_text.'%')->get();
+        return response()->json($profile_experience);
+    }
+
 
 }
