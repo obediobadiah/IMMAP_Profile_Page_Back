@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class profile_experience extends Model
 {
     use HasFactory;
-    protected $table = 'profile';
+    protected $table = 'profile_experience';
     protected $fillable = [	
+        'name',	
         'job',	
         'startdate',	
         'enddate',
