@@ -83,4 +83,33 @@ class ProfileController extends Controller
     }
 
 
+
+    public function EditIdentity($id, Request $request)
+    {
+
+
+        $request->validate([
+            'name' => 'required',
+            'age' => 'required',
+        ]);
+
+        $profile_identity = new profile_identity;
+        $profile_identity->name = $request->input('name');
+        $profile_identity->age = $request->input('age');
+        $profile_identity->image = $request->input('image');
+
+        $profile_identity->save();
+
+        return response()->json([
+            'status' => 200,
+            'message' => 'Identity added successfully'
+        ]);
+
+        return response()->json([
+            'status' => 422,
+            'message' => 'Please, Make sure all fields are completed!!'
+        ]);
+    }
+
+
 }

@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('enddate');
             $table->string('companyname');
             $table->string('companylogo');
-            $table->string('jobdescript');
+            $table->longText('jobdescript');
             $table->timestamps();
         });
     }
