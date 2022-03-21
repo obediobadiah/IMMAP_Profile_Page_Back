@@ -20,6 +20,7 @@ Route::get('/profile-experience', [ProfileController::class, 'GetExperience']);
 
 Route::post('/add-profile-experience', [ProfileController::class, 'SaveExperienceEndDate']);
 Route::post('/add-profile-identity', [ProfileController::class, 'SaveIdentity']);
+Route::put('/edit-profile-identity', [ProfileController::class, 'EditIdentity']);
 
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
